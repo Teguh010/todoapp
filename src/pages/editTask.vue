@@ -17,6 +17,7 @@
             <div class="q-pt-sm q-pb-md">
               <div class="bg-grey-3" style="border-radius: 10px;">
                 <q-input
+                clearable
                   v-model="task.name"
                   style="font-size: 20px"
                   borderless
@@ -27,6 +28,7 @@
             </div>
             <div class="bg-grey-3" style="border-radius: 10px;">
               <q-input
+              clearable
                 v-model="task.dueDate"
                 borderless
                 class="q-px-md"
@@ -71,6 +73,7 @@
             <div class="q-pt-md">
               <div class="bg-grey-3 " style="border-radius: 10px;">
                 <q-input
+                clearable
                   style="font-size: 20px"
                   v-model="task.dueTime"
                   borderless
@@ -137,11 +140,6 @@ import {db} from '../firebase/init'
 export default {
   data() {
     return {
-      // name: "",
-      // dueDate: "",
-      // dueTime: "",
-      // completed: false,
-      // proxyDate: ""
       task : null
     };
   },
@@ -175,20 +173,10 @@ export default {
       }
     },
      onReset () {
-      this.name = this.task.name
-      this.dueDate = this.task.dueDate
-      this.dueTime = this.task.dueTime
+     this.$router.push({ name: 'pageTodo'})
     }
   },
    created () {
-      // let ref = db.collection('tasks').doc(this.$route.params.id)
-      // ref.get().then(snapshot => {
-      //     snapshot.forEach(doc => {
-      //         console.log('edit', doc.data())
-      //         this.task = doc.data()
-      //         this.task.id = doc.id
-      //     })
-      // })
      let dbRef = db.collection('tasks').doc(this.$route.params.id);
             dbRef.get().then((doc) => {
                 this.task = doc.data();

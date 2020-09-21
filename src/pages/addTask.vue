@@ -15,6 +15,7 @@
             <div class="q-pt-sm q-pb-md">
               <div class="bg-grey-3" style="border-radius: 10px;">
                 <q-input
+                clearable
                   v-model="name"
                   style="font-size: 20px"
                   borderless
@@ -25,6 +26,7 @@
             </div>
             <div class="bg-grey-3" style="border-radius: 10px;">
               <q-input
+              clearable
                 v-model="dueDate"
                 borderless
                 class="q-px-md"
@@ -69,6 +71,7 @@
             <div class="q-pt-md">
               <div class="bg-grey-3 " style="border-radius: 10px;">
                 <q-input
+                clearable
                   style="font-size: 20px"
                   v-model="dueTime"
                   borderless
@@ -146,7 +149,7 @@ export default {
       this.proxyDate = this.dueDate;
     },
     onSubmit () {
-      if (this.name == '') {
+      if (this.name == '' || this.dueDate == '' || this.dueTime == '') {
         this.$q.notify({
           color: 'red-5',
           textColor: 'white',
@@ -173,10 +176,7 @@ export default {
       }
     },
      onReset () {
-      this.name = null
-      this.completed = false
-      this.dueDate = null
-      this.dueTime = null
+     this.$router.push({ name: 'pageTodo'})
     }
   }
 };

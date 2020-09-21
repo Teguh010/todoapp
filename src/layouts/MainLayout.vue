@@ -4,7 +4,7 @@
       <q-toolbar>
 
         <q-toolbar-title class="absolute-center">
-          Awesome Todo tesst
+          My Todo
         </q-toolbar-title>
         <div>
            <q-page-sticky position="top-right" :offset="[18, -20]">

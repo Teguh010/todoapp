@@ -6,7 +6,7 @@
         <q-toolbar-title class="absolute-center">
           My Todo
         </q-toolbar-title>
-        <div>
+        <div v-if="$route.name == 'pageTodo' ">
             <q-page-sticky position="bottom" :offset="[0, 18]">
             <q-btn to="/addTask" size="xl" icon="add" round  class="text-white bg-blue shadow-3"/>
           </q-page-sticky>

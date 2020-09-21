@@ -1,12 +1,12 @@
 <template>
   <q-page padding>
     <div class="q-py-md">
-       <q-banner  inline-actions class="text-white bg-red">
-     Edit Task
-      <template v-slot:action>
-        <q-btn to="/" color="white" class="text-red" label="Back To tasks" />
-      </template>
-    </q-banner>
+      <q-banner inline-actions class="text-white bg-red">
+        Edit Task
+        <template v-slot:action>
+          <q-btn to="/" color="white" class="text-red" label="Back To tasks" />
+        </template>
+      </q-banner>
     </div>
     <!-- <div  v-if="task">
     </div> -->
@@ -17,7 +17,7 @@
             <div class="q-pt-sm q-pb-md">
               <div class="bg-grey-3" style="border-radius: 10px;">
                 <q-input
-                clearable
+                  clearable
                   v-model="task.name"
                   style="font-size: 20px"
                   borderless
@@ -28,7 +28,7 @@
             </div>
             <div class="bg-grey-3" style="border-radius: 10px;">
               <q-input
-              clearable
+                clearable
                 v-model="task.dueDate"
                 borderless
                 class="q-px-md"
@@ -73,7 +73,7 @@
             <div class="q-pt-md">
               <div class="bg-grey-3 " style="border-radius: 10px;">
                 <q-input
-                clearable
+                  clearable
                   style="font-size: 20px"
                   v-model="task.dueTime"
                   borderless
@@ -131,60 +131,64 @@
         </q-card-section>
       </q-card>
     </q-form>
-    
   </q-page>
 </template>
 
 <script>
-import {db} from '../firebase/init'
+import { db } from "../firebase/init";
 export default {
   data() {
     return {
-      task : null
+      task: null
     };
   },
   methods: {
     updateProxyDate() {
       this.proxyDate = this.dueDate;
     },
-    onSubmit () {
-      if (this.task.name == '') {
+    onSubmit() {
+      if (this.task.name == "") {
         this.$q.notify({
-          color: 'red-5',
-          textColor: 'white',
-          icon: 'warning',
-          message: 'Please fill the fields correctly!'
-        })
-      }
-      else {
-          db.collection('tasks').doc(task.id).update({
-              name: this.task.name,
-              dueDate: this.task.dueDate,
-              dueTime: this.task.dueTime
-          }).then(() => {
-              this.$router.push({ name: 'pageTodo'})
+          color: "red-5",
+          textColor: "white",
+          icon: "warning",
+          message: "Please fill the fields correctly!"
+        });
+      } else {
+        db.collection("tasks")
+          .doc(task.id)
+          .update({
+            name: this.task.name,
+            dueDate: this.task.dueDate,
+            dueTime: this.task.dueTime
           })
+          .then(() => {
+            this.$router.push({ name: "pageTodo" });
+          });
         this.$q.notify({
-          color: 'green-4',
-          textColor: 'white',
-          icon: 'cloud_done',
-          message: 'Task Updated'
-        })
+          color: "green-4",
+          textColor: "white",
+          icon: "cloud_done",
+          message: "Task Updated"
+        });
       }
     },
-     onReset () {
-     this.$router.push({ name: 'pageTodo'})
+    onReset() {
+      this.$router.push({ name: "pageTodo" });
     }
   },
-   created () {
-     let dbRef = db.collection('tasks').doc(this.$route.params.id);
-            dbRef.get().then((doc) => {
-                this.task = doc.data();
-                  this.task.id = doc.id
-                console.log(this.task)
-            }).catch((error) => {
-                console.log(error)
-            })
+  created() {
+    let dbRef = db.collection("tasks").doc(this.$route.params.id);
+    dbRef
+      .get()
+      .then(doc => {
+        this.task = doc.data();
+        this.task.id = doc.id;
+        console.log(this.task);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 };
 </script>

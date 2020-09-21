@@ -192,6 +192,7 @@ export default {
      let dbRef = db.collection('tasks').doc(this.$route.params.id);
             dbRef.get().then((doc) => {
                 this.task = doc.data();
+                  this.task.id = doc.id
                 console.log(this.task)
             }).catch((error) => {
                 console.log(error)

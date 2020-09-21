@@ -7,8 +7,8 @@
           My Todo
         </q-toolbar-title>
         <div>
-           <q-page-sticky position="top-right" :offset="[18, -20]">
-            <q-btn to="/addTask" icon="add" round  class="text-white bg-green shadow-3"/>
+            <q-page-sticky position="bottom" :offset="[0, 18]">
+            <q-btn to="/addTask" size="xl" icon="add" round  class="text-white bg-blue shadow-3"/>
           </q-page-sticky>
         </div>
 

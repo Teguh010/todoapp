@@ -1,4 +1,4 @@
-# Quasar App (fixfaight)
+# Todo App, By Teguh Badrusalam
 
 A Quasar Framework app
 
